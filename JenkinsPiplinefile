@@ -6,6 +6,14 @@ environment {
         }
 
     stages {
+    
+    stage('Checkout code') {
+            steps {
+                checkout scm
+            }
+        }
+    
+    
         stage('Build') {
             steps {
            bat('set')
