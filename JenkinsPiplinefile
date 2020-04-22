@@ -9,18 +9,15 @@ environment {
     
     stage('Checkout code') {
             steps {
+                echo '..................................Checkout code Start.........................'
                checkout([$class: 'GitSCM', branches: [[name: '*/master']], 
                doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs:
                [[credentialsId: 'Git', url: 'https://github.com/sachinrokade/Rest-Curd.git']]])
+                echo '..................................Checkout End.........................'
             }
         }
-    
-    
         stage('Build') {
             steps {
-           bat('set')
-            
-            
                echo '..................................Building Start.........................'
                 bat 'mvn clean compile'
                 echo '..................................Building End.........................'
@@ -28,7 +25,9 @@ environment {
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
+               echo '..................................Testing Start.........................'
+                bat 'mvn clean test'
+                echo '..................................Testing End.........................'
             }
         }
         stage('Deploy') {
