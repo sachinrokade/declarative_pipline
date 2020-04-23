@@ -23,6 +23,22 @@ environment {
                 echo '..................................Building End.........................'
             }
         }
+        stage('Qulity_Checkstyle') {
+            steps {
+               echo '..................................Qulity_Checkstyle Start.........................'
+                bat 'mvn checkstyle:checkstyle'
+                echo '..................................Qulity_Checkstyle End.........................'
+            }
+        }
+        stage('Qulity_PMD') {
+            steps {
+               echo '..................................Qulity_PMD Start.........................'
+                bat 'mvn pmd:pmd'
+                echo '..................................Qulity_PMD End.........................'
+            }
+        }
+        
+        
         stage('Test') {
             steps {
                echo '..................................Testing Start.........................'
